@@ -3,8 +3,22 @@ fortune Dharma
 Bringing dharma teachings, to your fortune cookies :)
 
 
-=============
-Sources and more information, see:
+
+==========================
+Install
+==========================
+$> make
+$> make install DESTDIR=/path/of/your/choice
+
+==========================
+License
+==========================
+The only copyright or license that apply are those belonging 
+to the sources cited below.
+
+==========================
+Sources and more information
+==========================
 * http://www.accesstoinsight.org/
 ** Dhammapda - http://www.accesstoinsight.org/tipitaka/kn/dhp/index.html
 ** 
