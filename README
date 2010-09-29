@@ -5,10 +5,19 @@ Bringing dharma teachings, to your fortune cookies :)
 
 
 ==========================
+Dependencies
+==========================
+the `fortune` command, usually included in bsd-games
+
+==========================
 Install
 ==========================
 $> make
 $> make install DESTDIR=/path/of/your/choice
+
+To enable it on a typical login prompt, just make 
+the profile file executable.
+#> chmod +x /etc/profile.d/dharma-login-fortune.*sh
 
 ==========================
 License
