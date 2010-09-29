@@ -1,15 +1,24 @@
+CWD := $(shell pwd)
 fortunes := \
 	dhammapada \
-	dharma \
 	truths \
 	eightfold
 
-dat-files:
-	strfile -r dhammapada && \
-	strfile -r dharma
-#	$(foreach $(fortune))
+.dat-files: dharma $(fortunes)
+	for file in $(fortunes) dharma ; do strfile -r $$file ; done && \
+	touch $(CWD)/$@
 
-all: dat-files
+dharma: $(fortunes)
+	cp /dev/null $@ && \
+	for file in $(fortunes); do cat $$file >> dharma ; done
+
+install: .dat-files dharma $(fortunes)
+	$(foreach f,$(fortunes) dharma, \
+	install -D $(f) $(DESTDIR)//usr/share/games/fortunes/$(f); \
+	install -D $(f).dat $(DESTDIR)//usr/share/games/fortunes/$(f).dat; \
+	)
+
+all: .dat-files
 
 clean:
-	rm *.dat
+	rm -rf *.dat dharma
