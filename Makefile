@@ -1,4 +1,6 @@
 CWD := $(shell pwd)
+fortunedir := /usr/share/games/fortunes
+
 fortunes := \
 	dhammapada \
 	truths \
@@ -18,8 +20,8 @@ dharma: $(fortunes)
 
 install: .dat-files
 	$(foreach f,$(fortunes) dharma, \
-	install -D $(f) $(DESTDIR)/usr/share/games/fortunes/$(f); \
-	install -D $(f).dat $(DESTDIR)/usr/share/games/fortunes/$(f).dat;)
+	install -D $(f) $(DESTDIR)$(fortunedir)/$(f); \
+	install -D $(f).dat $(DESTDIR)$(fortunedir)/$(f).dat;)
 	$(foreach p,dharma-login-fortune.csh dharma-login-fortune.sh, install -D etc/$(p) $(DESTDIR)/etc/profile.d/$(p);)
 
 clean:
