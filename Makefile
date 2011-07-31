@@ -20,8 +20,8 @@ dharma: $(fortunes)
 
 install: .dat-files
 	$(foreach f,$(fortunes) dharma, \
-	install -D $(f) $(DESTDIR)$(fortunedir)/$(f); \
-	install -D $(f).dat $(DESTDIR)$(fortunedir)/$(f).dat;)
+	install -m 0644 -D $(f) $(DESTDIR)$(fortunedir)/$(f); \
+	install -m 0644 -D $(f).dat $(DESTDIR)$(fortunedir)/$(f).dat;)
 	$(foreach p,dharma-login-fortune.csh dharma-login-fortune.sh, install -D etc/$(p) $(DESTDIR)/etc/profile.d/$(p);)
 
 clean:
