@@ -52,6 +52,9 @@ class Fortunes
         def show_rand
                 @list[ rand(@list.count) ].show
         end
+        def get_rand
+                @list[ rand(@list.count) ].text
+        end
 
         private
         def check_file(file)
@@ -66,15 +69,36 @@ end
 
 
 if __FILE__ == $PROGRAM_NAME
+        @gui = false
         if ARGV.count == 0
-                STDERR.write("ERROR: please specify a fortune file\n")
+                STDERR.write("usage:\n  #{__FILE__} [-g] <fortune file(s)>\n\n\t-g\tTK Graphical display\n\n")
                 exit(2)
+        end
+
+        if ARGV.include?("-g")
+                ARGV.delete("-g")
+                @gui = true
+                require 'tk'
+
+                root = TkRoot.new() { title "Fortune" }
         end
 
         fortunes = Fortunes.new()
         for file in ARGV
                 fortunes.add_file(file)
         end
-        fortunes.show_rand
+
+        if @gui
+                msg = fortunes.get_rand()
+                len = msg.split("\n").map {|e| e.length() }.sort().first()
+                count = msg.split("\n").count
+
+                tktext = TkText.new(root) { }.pack("side" => "left")
+                tktext.insert('end', msg)
+
+                Tk.mainloop()
+        else
+                fortunes.show_rand
+        end
 
 end
