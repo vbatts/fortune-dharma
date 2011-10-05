@@ -6,6 +6,7 @@ fortunes := \
 	truths \
 	eightfold \
 	8_verses_for_training_the_mind \
+	misc.txt \
 	37_practises_of_bodhisattvas
 
 all: .dat-files
