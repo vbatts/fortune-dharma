@@ -25,6 +25,14 @@ the profile file executable.
 
 
 ==========================
+Extras
+==========================
+In the bin/ directory, there is a simple fortune command written in ruby.
+The benefit it has, is it reads from raw fortune files (pre strfile), and for kicks
+it has graphics mode, for displaying in X11
+Usage: ./bin/fortune.rb [-g] ./fortunes/
+
+==========================
 License
 ==========================
 Cited sources are subject to their licensing.

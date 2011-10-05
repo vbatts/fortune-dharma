@@ -83,10 +83,21 @@ if __FILE__ == $PROGRAM_NAME
                 root = TkRoot.new() { title "Fortune" }
         end
 
+	files = []
         fortunes = Fortunes.new()
-        for file in ARGV
-                fortunes.add_file(file)
+        for item in ARGV
+		if File.directory?(item)
+			for file in Dir.glob(item + "/*")
+				files << file if File.file?(file)
+			end
+		elsif File.file?(item)
+			files << file
+		end
         end
+
+	for file in files
+                fortunes.add_file(file)
+	end
 
         if @gui
                 msg = fortunes.get_rand()
