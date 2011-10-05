@@ -2,8 +2,9 @@
 # Print a fortune cookie for login shells:
 
 # A Balanced Selection
-setenv FORTUNE_FILE "50% dhammapada \
-	                   5%  truths \
+setenv FORTUNE_FILE "45% dhammapada \
+		     5% misc \
+	             5%  truths \
                      5% eightfold \
                      20% 8_verses_for_training_the_mind \
                      20% 37_practises_of_bodhisattvas"
