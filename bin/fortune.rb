@@ -61,16 +61,19 @@ class Fortunes
                 unless File.exists?(File.expand_path(file))
                         raise StandardError.new("#{File.expand_path(file)} does not exist")
                 end
-                if File.open(file).read(1) != "%"
-                        raise StandardError.new("#{File.expand_path(file)} is not a fortune file")
-                end
+                #if File.open(file).read(1) != "%"
+                #        raise StandardError.new("#{File.expand_path(file)} is not a fortune file")
+                #end
         end
 end
 
 
 if __FILE__ == $PROGRAM_NAME
         @gui = false
-        if ARGV.count == 0
+	@default_dir = "/usr/share/games/fortunes"
+
+        if ARGV.include?("-h")
+                ARGV.delete("-h")
                 STDERR.write("usage:\n  #{__FILE__} [-g] <fortune file(s)>\n\n\t-g\tTK Graphical display\n\n")
                 exit(2)
         end
@@ -85,6 +88,14 @@ if __FILE__ == $PROGRAM_NAME
 
 	files = []
         fortunes = Fortunes.new()
+
+	if ARGV.count == 0
+		for file in Dir.glob(@default_dir + "/*").reject {|i| i if i.end_with?(".dat") }
+			puts file
+               		fortunes.add_file(file)
+		end
+	end
+
         for item in ARGV
 		if File.directory?(item)
 			for file in Dir.glob(item + "/*")
@@ -92,12 +103,20 @@ if __FILE__ == $PROGRAM_NAME
 			end
 		elsif File.file?(item)
 			files << file
+		else
+			for file in Dir.glob(@default_dir + "/*").reject {|i| i if i.end_with?(".dat") }
+				if File.basename(file) == item
+                			fortunes.add_file(file)
+				end
+			end
 		end
         end
 
 	for file in files
                 fortunes.add_file(file)
 	end
+
+	exit(-2) if fortunes.list.nil?
 
         if @gui
                 msg = fortunes.get_rand()
