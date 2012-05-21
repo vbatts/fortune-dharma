@@ -31,7 +31,7 @@ fortunes/dharma.txt: $(fortunes)
 fortunes/%.dat: fortunes/%.txt
 	strfile -r $< $@
 
-install: .dat-files
+install: .dat-files.ts
 	$(foreach f,$(fortunes) fortunes/dharma.txt, \
 	install -m 0644 -D $(f) $(DESTDIR)$(fortunedir)/$(basename $(notdir $(f))); \
 	install -m 0644 -D $(basename $(f)).dat $(DESTDIR)$(fortunedir)/$(basename $(notdir $(f))).dat;)
