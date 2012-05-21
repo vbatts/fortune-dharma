@@ -1,5 +1,5 @@
 Name:		fortune-dharma
-Version:	1.0
+Version:	1.1
 Release:	1%{?dist}
 Summary:	Dharma fortunes
 
@@ -41,4 +41,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 
 %changelog
+* Mon May 21 2012 Vincent Batts <vbatts@redhat.com> 1.1-1
+- new package built with tito
+
 
