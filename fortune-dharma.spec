@@ -1,5 +1,5 @@
 Name:		fortune-dharma
-Version:	1.1
+Version:	1.2
 Release:	1%{?dist}
 Summary:	Dharma fortunes
 
@@ -61,6 +61,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/games/fortune/truths.dat
 
 %changelog
+* Mon May 21 2012 Vincent Batts <vbatts@redhat.com> 1.2-1
+- Automatic commit of package [fortune-dharma] release [1.1-1]. Fixing the
+  Makefile (vbatts@redhat.com)
+
 * Mon May 21 2012 Vincent Batts <vbatts@redhat.com> 1.1-1
 - new package built with tito
 
