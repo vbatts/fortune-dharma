@@ -42,7 +42,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%{_sysconfdir}/profile.d/dharma-login-fortune.csh
 %{_sysconfdir}/profile.d/dharma-login-fortune.sh
 #%{_datadir}/games/fortune/
 %{_datadir}/games/fortune/37_practises_of_bodhisattvas
@@ -59,6 +58,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/games/fortune/misc.dat
 %{_datadir}/games/fortune/truths
 %{_datadir}/games/fortune/truths.dat
+%exclude %{_sysconfdir}/profile.d/dharma-login-fortune.csh
 
 %changelog
 * Mon May 21 2012 Vincent Batts <vbatts@redhat.com> 1.2-1
