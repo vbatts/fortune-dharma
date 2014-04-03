@@ -1,4 +1,5 @@
 PROG := fortune-dharma
+VERSION := 1.2-1
 
 BASE_PATH := $(firstword $(BASE_PATH) $(subst /$C-xx,,$(CURDIR)-xx))
 P := $(BASE_PATH)/$(PROG)
@@ -21,6 +22,9 @@ fortunes_dat := $(addsuffix .dat,$(fortunes))
 fortunes := $(addsuffix .txt,$(fortunes))
 
 all: .dat-files.ts
+
+dist:
+	git archive --format=tar.gz --prefix=$(PROG)-$(VERSION)/ $(PROG)-$(VERSION) > $(PROG)-$(VERSION).tar.gz
 
 fortunes/dharma.txt: $(fortunes)
 	cat $^ > $@
